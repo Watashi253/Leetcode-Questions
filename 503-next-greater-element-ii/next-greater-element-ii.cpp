@@ -8,8 +8,8 @@ public:
             while(!st.empty() && st.top()<=nums[i%n]){
                 st.pop();
             }
-            if(st.empty() && i<n){
-                ans[i]=-1;
+            if(st.empty()){
+            if (i<n)  ans[i]=-1;
             }
             else{
               if (i<n)  ans[i]=st.top();

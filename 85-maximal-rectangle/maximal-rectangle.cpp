@@ -2,6 +2,7 @@ class Solution {
 public:
     int lHist(vector<int>& heights) {
         stack<int> st;
+        heights.push_back(0);
         int maxArea = 0;
         int n = heights.size();
         for (int i = 0; i < n; i++) {
@@ -13,13 +14,6 @@ public:
                 maxArea = max(heights[el] * (nse - pse - 1), maxArea);
             }
             st.push(i);
-        }
-        while (!st.empty()) {
-            int nse = n;
-            int el = st.top();
-            st.pop();
-            int pse = st.empty() ? -1 : st.top();
-            maxArea = max(maxArea, (nse - pse - 1) * heights[el]);
         }
         return maxArea;
     }

@@ -10,8 +10,7 @@ int ind=-1;
         while(!st.empty() && st.top().first<=price){
             st.pop();
         }
-        int pge=st.empty()?-1:st.top().second;
-        int ans=ind-pge;
+        int ans=ind-(st.empty()?-1:st.top().second);
         st.push({price,ind});
         return ans;
     }

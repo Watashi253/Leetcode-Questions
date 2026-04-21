@@ -8,13 +8,13 @@ public:
             if (nums[r] == 0) {
                 c++;
             }
-                while(c>k){
+               if(c>k){
                     if(nums[l]==0){
                         c--;
                     }                    
                     l++;
                 }
-            mx = max(mx, r - l + 1);
+           else mx = max(mx, r - l + 1);
             r++;
         }
         return mx;

@@ -14,7 +14,7 @@ public:
                     }                    
                     l++;
                 }
-           else 
+            if(c<=k)
            mx = max(mx, r - l + 1);
             r++;
         }

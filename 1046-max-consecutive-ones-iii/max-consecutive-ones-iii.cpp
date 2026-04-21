@@ -14,7 +14,8 @@ public:
                     }                    
                     l++;
                 }
-           else mx = max(mx, r - l + 1);
+           else 
+           mx = max(mx, r - l + 1);
             r++;
         }
         return mx;

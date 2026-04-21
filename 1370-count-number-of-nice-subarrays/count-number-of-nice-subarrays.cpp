@@ -2,15 +2,11 @@ class Solution {
 public:
 int atMost(vector<int>& nums, int k){
  int l = 0, r = 0;
-        int n = 0, c = 0;
+        int n = 0, sum = 0;
         while (r < nums.size()) {
-            if (nums[r] % 2 != 0) {
-                c++;
-            }
-            while(c>k){
-                if (nums[l] % 2 != 0){
-                    c--;
-                }
+           sum+=nums[r]%2;
+            while(sum>k){
+                sum-=nums[l]%2;
                 l++;
             }
             n+=r-l+1;  

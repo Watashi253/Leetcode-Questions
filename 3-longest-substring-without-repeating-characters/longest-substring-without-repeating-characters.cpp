@@ -8,7 +8,6 @@ public:
             if(hash.find(s[right])!=hash.end()){//char found in hash
             left=max(left, hash[s[right]] + 1);
             }
-            //char not found in hash
             mx=max(mx,right-left+1);
             hash[s[right]]=right;
             right++;

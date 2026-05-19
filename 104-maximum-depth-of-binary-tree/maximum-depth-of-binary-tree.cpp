@@ -11,14 +11,11 @@
  */
 class Solution {
 public:
-int check(TreeNode* node, int c){
-if(node==NULL) return c;
-return c=max(check(node->left,c+1),check(node->right,c+1));
-}
     int maxDepth(TreeNode* root) {
         TreeNode* node=root;
         int c=0;
         if(node==NULL) return c;
-        return check(node,c);
+        c=1+max(maxDepth(node->left),maxDepth(node->right));
+        return c;
     }
 };

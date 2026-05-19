@@ -21,7 +21,7 @@ public:
         int d=0;
         if (root == NULL)
             return d;           
-        d= max(d,maxDepth(root->left) + maxDepth(root->right));
+        d= maxDepth(root->left) + maxDepth(root->right);
         int dl=diameterOfBinaryTree(root->left);
         int dr=diameterOfBinaryTree(root->right);
         return max(d,max(dl,dr));

@@ -7,12 +7,9 @@ public:
         unordered_map<int, int> hash;
         for(int i=0;i<n;i++){
             hash[A[i]]++;
+            if(hash[A[i]]==2)c++;
             hash[B[i]]++;
-            if(A[i]!=B[i]){
-                if(hash[A[i]]==2) c++;
-                if(hash[B[i]]==2) c++;
-            }
-            else c++;
+            if(hash[B[i]]==2)c++;
             C.push_back(c);
         }
     return C;

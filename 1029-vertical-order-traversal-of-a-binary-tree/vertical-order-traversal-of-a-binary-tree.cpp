@@ -31,11 +31,11 @@ public:
 
         for(auto it: hash){
             vector<pair<int,int>> v = it.second;
-            sort(v.begin(), v.end());
+            sort(v.begin(), v.end());//sort row wise
 
             vector<int> temp;
 
-            for(auto &p : v) {
+            for(auto p : v) {
                 temp.push_back(p.second);
             }
 

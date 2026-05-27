@@ -11,16 +11,8 @@
  */
 class Solution {
 public:
-int counting(TreeNode* root, int &ans){
-if(root==NULL) return ans;
-ans++;
-counting(root->left,ans)+counting(root->right,ans);
-return ans;
-}
     int countNodes(TreeNode* root) {
         if(root==NULL) return 0;
-        int ans=1;
-        counting(root->left,ans)+counting(root->right,ans);
-        return ans;
+        return countNodes(root->left)+countNodes(root->right)+1;
     }
 };

@@ -11,21 +11,16 @@
  */
 class Solution {
 public:
+int counting(TreeNode* root, int &ans){
+if(root==NULL) return ans;
+ans++;
+counting(root->left,ans)+counting(root->right,ans);
+return ans;
+}
     int countNodes(TreeNode* root) {
-        int ans=0;
         if(root==NULL) return 0;
-        queue<TreeNode*> q; 
-        q.push(root);
-        while(!q.empty()){
-            int n=q.size();
-            ans+=n;
-            for(int i=0;i<n; i++){
-                TreeNode* node=q.front();
-                q.pop();
-                if(node->left)q.push(node->left);
-                if(node->right)q.push(node->right);
-            }
-        }
+        int ans=1;
+        counting(root->left,ans)+counting(root->right,ans);
         return ans;
     }
 };

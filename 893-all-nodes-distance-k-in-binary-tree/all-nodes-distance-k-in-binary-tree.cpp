@@ -11,7 +11,7 @@ class Solution {
 public:
     vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
         queue<TreeNode*> q;
-        unordered_map<TreeNode*, TreeNode*> parent;
+        map<TreeNode*, TreeNode*> parent;
         q.push(root);
         while (!q.empty()) {
             int n = q.size();
@@ -31,7 +31,7 @@ public:
         }
 
         int d = 0;
-        unordered_map<TreeNode*, bool> vis;
+        map<TreeNode*, bool> vis;
         q.push(target);
         vis[target] = true;
 

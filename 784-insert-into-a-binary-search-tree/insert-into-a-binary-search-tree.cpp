@@ -16,19 +16,22 @@ public:
         if(root==NULL)
             return n;
         TreeNode* node=root;
-        TreeNode* prev;
         while(node){
-            prev=node;
             if(val>node->val){
+                if(!node->right){
+                    node->right=n;
+                    break;
+                }
                 node=node->right;
             }
             else if(val<node->val){
+                if(!node->left){
+                    node->left=n;
+                    break;
+                }
                 node= node->left;
             }
         }
-        if(val>prev->val) prev->right=n;
-        else prev->left=n;
-
         return root;
     }
 };

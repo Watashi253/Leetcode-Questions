@@ -14,7 +14,7 @@ class Solution {
 public:
     TreeNode* build(int postStart, int postEnd, vector<int>& postorder,
                     int inStart, int inEnd, vector<int>& inorder,
-                    unordered_map<int, int> &hash){
+                    map<int, int> &hash){
         if(postStart>postEnd || inStart>inEnd) return NULL;
         TreeNode* root = new TreeNode(postorder[postEnd]);
         int inRoot=hash[root->val];
@@ -28,7 +28,7 @@ public:
         return root;    
         }            
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-        unordered_map<int, int> hash;
+        map<int, int> hash;
         int n = inorder.size();
         for (int i = 0; i < n; i++) {
             hash[inorder[i]] = i;

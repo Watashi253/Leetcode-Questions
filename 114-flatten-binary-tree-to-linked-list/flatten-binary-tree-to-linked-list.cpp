@@ -20,9 +20,10 @@ public:
             st.pop();
             if(node->right) st.push(node->right);
             if(node->left) st.push(node->left);
-            if(!st.empty()) 
-            {node->right=st.top();
-            node->left=NULL;}
+            if(!st.empty())
+            node->right=st.top();
+            
+            node->left=NULL;
             }
     }
 };

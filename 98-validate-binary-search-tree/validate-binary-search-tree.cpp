@@ -11,19 +11,13 @@
  */
 class Solution {
 public:
-void check(TreeNode* root, vector<int> &inorder){
-    if(root==NULL) return;
-    check(root->left, inorder);
-    inorder.push_back(root->val);
-    check(root->right, inorder);
+bool isValid(TreeNode* root, long min, long max){
+if(root==NULL) return true;
+if(min>= root->val || max<= root->val) return false;
+return isValid(root->left, min, root->val) && 
+isValid(root->right,root->val, max);
 }
     bool isValidBST(TreeNode* root) {
-        vector<int> inorder;
-        check(root, inorder);
-        for(int i=0; i<inorder.size()-1; i++){
-        if(inorder[i]>=inorder[i+1])
-        return false;
-        }
-        return true;
+        return isValid(root, LONG_MIN, LONG_MAX);
     }
 };

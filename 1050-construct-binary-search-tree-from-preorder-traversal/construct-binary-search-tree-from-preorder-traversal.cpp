@@ -12,17 +12,17 @@
  */
 class Solution {
 public:
-TreeNode* backtrack(vector<int>& preorder, int &i, int min, int max){
+TreeNode* backtrack(vector<int>& preorder, int &i, int max){
     if(i>=preorder.size()) return NULL;
-    if(preorder[i]<=min || preorder[i]>=max) return NULL;
+    if(preorder[i]>=max) return NULL;
     TreeNode* root = new TreeNode(preorder[i]);
     i++;
-    root->left=backtrack(preorder, i, min, root->val);
-    root->right=backtrack(preorder, i, root->val, max);
+    root->left=backtrack(preorder, i, root->val);
+    root->right=backtrack(preorder, i, max);
     return root;
 }
     TreeNode* bstFromPreorder(vector<int>& preorder) {
         int i=0;
-        return backtrack(preorder, i, INT_MIN, INT_MAX);
+        return backtrack(preorder, i, INT_MAX);
     }
 };

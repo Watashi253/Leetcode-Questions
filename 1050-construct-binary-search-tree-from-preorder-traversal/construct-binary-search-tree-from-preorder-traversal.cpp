@@ -13,8 +13,7 @@
 class Solution {
 public:
 TreeNode* backtrack(vector<int>& preorder, int &i, int max){
-    if(i>=preorder.size()) return NULL;
-    if(preorder[i]>=max) return NULL;
+    if(i >= preorder.size() || preorder[i] >= max) return NULL;
     TreeNode* root = new TreeNode(preorder[i]);
     i++;
     root->left=backtrack(preorder, i, root->val);

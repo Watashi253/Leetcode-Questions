@@ -11,9 +11,9 @@
  * };
  */
 class BSTIterator {
-    stack<TreeNode*> st;
-    bool reverse = true;
 public:
+stack<TreeNode*> st;
+    bool reverse = true;
     BSTIterator(TreeNode* root, bool isReverse) {
         reverse = isReverse;
         pushALL(root);

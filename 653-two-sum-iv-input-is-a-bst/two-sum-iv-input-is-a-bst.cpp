@@ -19,12 +19,14 @@ void find(TreeNode* root, vector<int> & inorder){
 }
     bool findTarget(TreeNode* root, int k) {
         vector<int> inorder;
+        set<int> look;
         find(root, inorder);
-        for(int i=0; i<inorder.size()-1; i++){
+        // look.push_back(k-inorder[0]);
+        for(int i=0; i<inorder.size(); i++){
             int sum=k-inorder[i];
-            for(int j=i+1; j<inorder.size(); j++){
-                if(sum==inorder[j]) return true;
-            }
+            if(look.find(sum)!=look.end())
+            return true;
+            look.insert(inorder[i]);
         }
         return false;
     }

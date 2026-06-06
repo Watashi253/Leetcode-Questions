@@ -27,7 +27,6 @@ public:
             }
         }
 
-        if(c==numCourses) return true;
-        return false;
+        return (c==numCourses);
     }
 };

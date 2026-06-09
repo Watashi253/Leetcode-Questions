@@ -5,6 +5,8 @@ public:
         for (auto word : wordList) {
             w.insert(word);
         }
+if (!w.count(endWord))
+return 0;
 
         queue<pair<string, int>> q;
         q.push({beginWord, 1});
@@ -18,7 +20,7 @@ public:
             for (int i = 0; i < word.size(); i++) {
                 string pattern = word;
                 char ch=pattern[i];
-                
+
                 for (char c = 'a'; c <= 'z'; c++) {
 
                     if(ch==c) continue;

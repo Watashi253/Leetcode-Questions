@@ -1,7 +1,7 @@
 class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
-        set<string> w;
+        unordered_set<string> w;
         for (auto word : wordList) {
             w.insert(word);
         }
@@ -17,12 +17,17 @@ public:
 
             for (int i = 0; i < word.size(); i++) {
                 string pattern = word;
+                char ch=pattern[i];
+                
                 for (char c = 'a'; c <= 'z'; c++) {
+
+                    if(ch==c) continue;
+
                     pattern[i] = c;
                     if (w.count(pattern)) {
                         if (pattern == endWord)
                         return dis + 1;
-                        
+
                         q.push({pattern, dis + 1});
                         w.erase(pattern);
                     }

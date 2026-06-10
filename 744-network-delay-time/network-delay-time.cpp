@@ -8,23 +8,26 @@ public:
         }
 
         vector<int> dis(n+1,1e9);
-        queue<pair<int, int>> q;
-        q.push({0,k});
+        set<pair<int, int>> q;
+        q.insert({0,k});
         dis[k]=0;
 
         while(!q.empty()){
-            auto it=q.front();
+            auto it=*q.begin();
             int t=it.first;
             int node=it.second;
-            q.pop();
+            q.erase(it);
 
             for(auto x:adj[node]){
                 int num=x.first;
                 int time=x.second;
 
                 if(time+t <dis[num]){
+                    if(dis[num]!=1e9) 
+                    q.erase({dis[num],num});
+
                     dis[num]=t+time;
-                    q.push({dis[num],num});
+                    q.insert({dis[num],num});
                 }
             }
         }

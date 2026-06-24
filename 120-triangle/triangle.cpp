@@ -5,17 +5,12 @@ public:
          int ans=INT_MAX;
          vector<vector<int>> dp = triangle;
         
-         for(int i=n-1; i>=0; i--){
+         for(int i=n-2; i>=0; i--){
             for(int j=triangle[i].size()-1; j>=0; j--){
-                if(i==n-1){
-                    dp[i][j]=triangle[i][j];
-                }
-                else{
                 int d=1e9, dr=1e9;
                 if(i+1<n) d= triangle[i][j]+dp[i+1][j];
                 if(i+1<n) dr= triangle[i][j]+dp[i+1][j+1];
                 dp[i][j]=min(d, dr);
-                }
             }
          }
 

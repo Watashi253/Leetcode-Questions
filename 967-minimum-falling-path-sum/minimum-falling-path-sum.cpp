@@ -1,29 +1,31 @@
 class Solution {
 public:
-int check(int row, int col, vector<vector<int>>& matrix, 
-vector<vector<int>> &dp){
-if(col<0 || col>=matrix.size())
-return 1e9;
-
-if(row==0){
-    return dp[row][col]= matrix[row][col];
-}
-
-if(dp[row][col]!=1e9) return dp[row][col];
-
-int u=matrix[row][col]+ check(row-1, col, matrix, dp);
-int ur=matrix[row][col]+ check(row-1, col+1, matrix, dp);
-int ul=matrix[row][col]+ check(row-1, col-1, matrix, dp);
-
-return dp[row][col]= min(u, min(ul, ur));
-}
     int minFallingPathSum(vector<vector<int>>& matrix) {
-        int n=matrix.size();
-        vector<vector<int>>dp(n, vector<int>(n,1e9)); 
-        int ans=1e9;
-        for(int i=0; i<n; i++){
-            ans=min(ans, check(n-1, i, matrix, dp));
+        int n = matrix.size();
+        if(n==1) return matrix[0][0];
+        vector<int> dp(n, 0);
+        for (int i = 0; i < n; i++) {
+            dp[i] = matrix[0][i];
         }
-       return ans;
+
+        vector<int> curr(n, 0);
+        for (int j = 1; j < n; j++) {
+            for (int i = 0; i < n; i++) {
+                    int d = 1e9, dl = 1e9, dr = 1e9;
+                    d = matrix[j][i] + dp[i];
+                    if (i - 1 >= 0)
+                        dl = matrix[j][i] + dp[i-1];
+                    if (i + 1 < n)
+                        dr = matrix[j][i] + dp[i+1];
+
+                    curr[i] = min(d, min(dl, dr));                
+            }
+            dp=curr;
+        }
+        int minSum = 1e9;
+        for (int i = 0; i < n; i++) {
+            minSum = min(minSum, dp[i]);
+        }
+        return minSum;
     }
 };

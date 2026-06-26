@@ -13,6 +13,7 @@ public:
         int k=sum/2;
         vector<bool> prev(k + 1, 0), cur(k + 1, 0);
         prev[0] = cur[0] = true;
+        if(nums[0]<=k) prev[nums[0]]=true;
 
         for (int ind = 1; ind < n; ind++) {
             for (int j = 1; j <= k; j++) {

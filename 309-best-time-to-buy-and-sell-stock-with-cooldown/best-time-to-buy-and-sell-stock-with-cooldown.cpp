@@ -18,7 +18,6 @@ int f(int i, int buy, vector<int>& prices, vector<vector<int>>& dp){
 }
     int maxProfit(vector<int>& prices) {
         int n=prices.size();
-        vector<int> cur(3,0);
         int buy=0, sell=0, cool=0;
 
         for(int i=n-1; i>=0; i--){

@@ -15,14 +15,15 @@ int f(int i, int buy, int tr, vector<int>& prices, vector<vector<vector<int>>>& 
 }
     int maxProfit(vector<int>& prices) {
         int n=prices.size();
-        vector<vector<vector<int>>> dp(n+1, vector<vector<int>>(2, vector<int>(3,0)));
+        vector<vector<int>> next(2, vector<int>(3,0)), cur(2, vector<int>(3,0));
 
         for(int i=n-1; i>=0; i--){
             for(int tr=1; tr<3; tr++){
-                dp[i][1][tr]=max(-prices[i]+ dp[i+1][0][tr], dp[i+1][1][tr]);
-                dp[i][0][tr]=max(+prices[i]+dp[i+1][1][tr-1], dp[i+1][0][tr]);
+                cur[1][tr]=max(-prices[i]+ next[0][tr], next[1][tr]);
+                cur[0][tr]=max(+prices[i]+next[1][tr-1], next[0][tr]);
+                next=cur;
             }
         }
-        return dp[0][1][2];
+        return next[1][2];
     }
 };

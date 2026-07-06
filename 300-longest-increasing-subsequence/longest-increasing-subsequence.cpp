@@ -21,8 +21,8 @@ public:
 
         for (int i = 1; i <n; i++) {
             for (int prev = 0; prev <i; prev++) {
-                if(nums[prev]<nums[i]){
-                    dp[i]=max(dp[i], 1+dp[prev]);
+                if(nums[prev]<nums[i] && 1+dp[prev]>dp[i]){
+                    dp[i]=1+dp[prev];
                 }
             }
             maxLIS = max(maxLIS, dp[i]);

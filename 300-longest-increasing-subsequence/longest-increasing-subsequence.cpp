@@ -16,19 +16,17 @@ public:
     }
     int lengthOfLIS(vector<int>& nums) {
         int n = nums.size();
-        vector<int> next(n + 1, 0), cur(n + 1, 0);
+        vector<int> dp(n, 1);
+        int maxLIS=1;
 
-        for (int i = n - 1; i >= 0; i--) {
-            for (int prev = i - 1; prev >= -1; prev--) {
-                int take = 0;
-                if (prev == -1 || nums[i] > nums[prev]) {
-                    take = 1 + next[i+1];
+        for (int i = 1; i <n; i++) {
+            for (int prev = 0; prev <i; prev++) {
+                if(nums[prev]<nums[i]){
+                    dp[i]=max(dp[i], 1+dp[prev]);
                 }
-                int notake = next[prev+1];
-                cur[prev + 1] = max(take, notake);
             }
-            next=cur;
+            maxLIS = max(maxLIS, dp[i]);
         }
-        return next[0];
+        return maxLIS;
     }
 };

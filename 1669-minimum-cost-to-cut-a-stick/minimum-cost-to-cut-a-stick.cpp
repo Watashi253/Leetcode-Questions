@@ -2,24 +2,25 @@ class Solution {
 public:
 int f(int i, int j, vector<int> &cuts, vector<vector<int>> &dp){
 
-    if(j - i <= 1) return 0;
+    if(i>j) return 0;
 
     if(dp[i][j]!=-1) return dp[i][j];
+
     int mini=1e9;
-    for(int k = i + 1; k < j; k++){
-            int cost = cuts[j] - cuts[i] + f(i, k, cuts, dp) + f(k, j, cuts, dp);
-            mini = min(mini, cost);
+    for(int k = i; k <= j; k++){
+        int cost = cuts[j+1] - cuts[i-1] + f(i, k-1, cuts, dp) + f(k+1, j, cuts, dp);
+        mini = min(mini, cost);
     }
-    if (mini == 1e9) return 0;
+
     return dp[i][j]=mini;
 }
     int minCost(int n, vector<int>& cuts) {
+        int m = cuts.size();
         cuts.push_back(0);
         cuts.push_back(n);
         sort(cuts.begin(), cuts.end());
-        int m = cuts.size();
 
-        vector<vector<int>> dp(m, vector<int>(m,-1));
-        return f(0, m-1, cuts, dp);
+        vector<vector<int>> dp(m+2, vector<int>(m+2,-1));
+        return f(1, m, cuts, dp);
     }
 };

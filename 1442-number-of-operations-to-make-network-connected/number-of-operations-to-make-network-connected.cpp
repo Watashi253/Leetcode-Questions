@@ -16,11 +16,12 @@ vector<int> par, size;
         return par[node]= find(par[node]);
     }
 
-    void unionbySize(int u, int v){
+    bool unionbySize(int u, int v){
         int rootU = find(u);
         int rootV = find(v);
 
-        if(rootU==rootV) return;
+        if(rootU==rootV) return false;
+
         if(size[rootU]<size[rootV]){
             par[rootU]=rootV;
             size[rootV]+=size[rootU];
@@ -29,6 +30,7 @@ vector<int> par, size;
             par[rootV]=rootU;
             size[rootU]+=size[rootV];
         }
+        return true;
     }
 };
 class Solution {
@@ -36,22 +38,13 @@ public:
     int makeConnected(int n, vector<vector<int>>& connections) {
         if(connections.size()<n-1) return -1;
         DisjointSet ds(n);
-        
-        int extract=0;
+
+        int components = n;
         for(auto c: connections){
-            if(ds.find(c[0])==ds.find(c[1])) extract++;
-            else
-            ds.unionbySize(c[1], c[0]);
+            if(ds.unionbySize(c[1], c[0]))
+            components--;
         }
-
-        int ct=0;
-        for(int i=0; i<n; i++){
-            if(ds.par[i]==i) ct++;
-        }
-
-        int ans=ct-1;
-
-        if(extract < ans) return -1;
-        return ans;
+        
+        return components - 1;
     }
 };

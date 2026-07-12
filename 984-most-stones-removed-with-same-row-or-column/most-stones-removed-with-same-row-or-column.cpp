@@ -34,13 +34,27 @@ public:
      int n=stones.size();
      DisjointSet ds(n);
 
-     for(int i = 0; i < n; i++) {
-            for(int j = i + 1; j < n; j++) {
-                if (stones[i][0] == stones[j][0] || stones[i][1] == stones[j][1]) {
-                    ds.unionbySize(i, j);
-                }
-            }
-        } 
+     unordered_map<int, int> row;
+     unordered_map<int, int> col;
+
+    for(int i = 0; i < n; i++) {
+        int r=stones[i][0];
+        int c=stones[i][1];
+
+        if(row.count(r)){
+            ds.unionbySize(row[r], i);
+        }
+        else {
+            row[r]=i;
+        }
+
+        if(col.count(c)){
+            ds.unionbySize(col[c], i);
+        }
+        else {
+            col[c]=i;
+        }
+    } 
 
     int ct=0;
     for(int i=0; i<n; i++){

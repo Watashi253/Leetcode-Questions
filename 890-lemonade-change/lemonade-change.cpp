@@ -15,16 +15,12 @@ public:
             }
             else if(bills[i]==20){
                 if(ct5==0) return false;
-                int rem=15;
-                if(ct10>0){
-                    ct10--;
-                    rem-=10;
-                }
-                while(rem>0 && ct5>0){
-                    rem-=5;
+                else if(ct10>0){
+                    ct10--; 
                     ct5--;
                 }
-                if(rem>0) return false;
+                else if(ct5>=3) ct5-=3;
+                else return false;
             }
         }
         return true;

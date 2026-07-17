@@ -8,9 +8,9 @@ public:
         while(i<g.size() && j<s.size()){
             if(g[i]<=s[j]){
                 c++;
-                j++, i++;
+                i++;
             } 
-            else if(g[i]>s[j])j++;
+            j++;
         }
 
         return c;

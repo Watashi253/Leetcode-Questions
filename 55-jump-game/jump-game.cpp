@@ -4,16 +4,11 @@ public:
         int n=nums.size();
         int maxind=0;
 
-        for(int i=0; i<n; i++){
-            int ind=i+nums[i];
-            if(i>maxind) return false;
-            else if(ind>maxind){
-                maxind=i+nums[i];
-            }
-
-            if(maxind>=n-1) return true;
+        for(int i=0; i<n-1; i++){
+            maxind=max(i+nums[i], maxind);
+            if(maxind<=i)return false;
         }
-        
-        return false;
+
+        return true;
     }
 };

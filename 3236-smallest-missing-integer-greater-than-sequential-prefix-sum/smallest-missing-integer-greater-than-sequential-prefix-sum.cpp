@@ -11,7 +11,8 @@ public:
         }
 
         int ans=sum;
-            while(find(nums.begin(), nums.end(), ans)!=nums.end()){
+        unordered_set <int> help(nums.begin(), nums.end());
+            while(help.count(ans)){
                 ans++;
             }
 

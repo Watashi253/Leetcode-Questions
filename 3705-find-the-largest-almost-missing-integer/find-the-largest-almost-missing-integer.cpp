@@ -1,7 +1,7 @@
 class Solution {
 public:
     int largestInteger(vector<int>& nums, int k) {
-        int n = nums.size(), mx = INT_MIN, maxi = INT_MIN;
+        int n = nums.size(), mx = -1, maxi = -1;
         unordered_map<int, int> freq;
 
         for (int i = 0; i < n; i++) {
@@ -25,7 +25,7 @@ public:
                     maxi = el;
                 }
             }
-            return maxi == INT_MIN ? -1 : maxi;
+            return maxi;
         }
         return mx;
     }

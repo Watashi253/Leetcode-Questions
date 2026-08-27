@@ -5,18 +5,18 @@ public:
         if(s.length()!=t.length()) 
         return false;
 
-        unordered_map<char, int> cnt;
+        vector<int> cnt(26,0);
 
         for(char ch: s){
-            cnt[ch]++;
+            cnt[ch-'a']++;
         }
         for(char ch: t){
 
-            if(!cnt.count(ch)) return false;
+            if(cnt[ch-'a']==0) return false;
 
-            cnt[ch]--;
+            cnt[ch-'a']--;
 
-            if(cnt[ch]<0) return false;
+            if(cnt[ch-'a']<0) return false;
         }
 
         return true;

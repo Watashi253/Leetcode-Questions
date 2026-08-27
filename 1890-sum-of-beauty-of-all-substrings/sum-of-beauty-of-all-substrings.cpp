@@ -5,23 +5,23 @@ public:
         int sum=0;
 
         for(int i=0; i<n; i++){
-            for(int j=i+1; j<n; j++){
-                vector<int> freq(26,0);
+            vector<int> freq(26,0);
+
+            for(int j=i; j<n; j++){
+                freq[s[j] - 'a']++;
                 int mn=1e9, mx=0;
 
-                for(int k=i; k<=j; k++){
-                    freq[s[k]-'a']++;
-                }
-                
-                for(int k=0; k<freq.size(); k++){
-                    if(freq[k]<mn && freq[k]!=0) mn=freq[k];
-                    if(freq[k]>mx) mx=freq[k];
+                for (int k = 0; k < 26; k++) {
+                    if (freq[k] > 0) {
+                        mx = max(mx, freq[k]);
+                        mn = min(mn, freq[k]);
+                    }
                 }
 
                 sum+=mx-mn;
             }
         }
-        
+
         return sum;
     }
 };

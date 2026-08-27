@@ -34,7 +34,7 @@ public:
             }
 
             // 2. Try to extend the matching prefix for the next iteration
-            if (i < target.length() && freq[target[i] - 'a'] > 0) {
+            if (freq[target[i] - 'a'] > 0) {
                 prefix += target[i];
                 freq[target[i] - 'a']--;
             } else {

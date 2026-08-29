@@ -5,15 +5,21 @@ public:
         int n=s.size();
         string ans="";
 
-        for(int i=0; i<n; i++){
-            string w="";
-            while(s[i]!=' ' && i<n){
-                w+=s[i];
-                i++;
-            }
-            if(w!="") ans=w+" "+ans;
+        for(int i=n-1; i>=0; i--){
+            
+            if(s[i]==' ') continue;
+
+            int right = i;
+
+                while(i>=0 && s[i]!=' ')
+                i--;
+
+            ans+=s.substr(i+1, right - i);
+            ans += " ";
         }
-        ans.pop_back();
+            
+        if(!ans.empty()) ans.pop_back();
+        
         return ans;
     }
 };

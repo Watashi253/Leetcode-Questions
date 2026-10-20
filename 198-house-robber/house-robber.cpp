@@ -1,16 +1,16 @@
 class Solution {
 public:
+int chori(int i, vector<int>& nums, vector<int>& dp){
+
+if(i>=nums.size()) return 0;
+
+if(dp[i]!=-1) return dp[i];
+
+return dp[i]=max(chori(i+2, nums, dp)+nums[i], chori(i+1, nums, dp));
+}
     int rob(vector<int>& nums) {
-        int n=nums.size();
-        int prev1=nums[0];
-        int prev2=0;
-        for(int i=1; i<n; i++){
-            int pick=nums[i]+prev2;
-            int dontpick=prev1;
-            int curr=max(pick, dontpick);
-            prev2=prev1;
-            prev1=curr;
-        }
-        return prev1;
+        int n= nums.size();
+        vector<int> dp(n, -1);
+        return chori(0, nums, dp);
     }
 };

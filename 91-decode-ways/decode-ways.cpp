@@ -1,25 +1,27 @@
 class Solution {
 public:
-int dekho(int i, string &s, vector<int>& dp){
-    if(i==s.size()) return 1;
+    int numDecodings(string s) {
+        int n = s.size();
+        if (n == 0 || s[0] == '0')
+            return 0;
+        vector<int> dp(n + 1, 0);
+        dp[n]=1;
 
-    if(dp[i]!=-1) return dp[i];
+        for (int i = n - 1; i >= 0; i--) {
+            if (s[i] == '0'){
+                dp[i] = 0;
+                continue;
+            }
 
-    if(s[i]=='0') return dp[i]=0;
+            dp[i] = dp[i + 1];
 
-    dp[i] = dekho(i + 1, s, dp);
-
-    if (i + 1 < s.size()) {
-            if (s[i] == '1' || (s[i] == '2' && s[i + 1] <= '6')) {
-                dp[i] += dekho(i + 2, s, dp);
+            if (i + 1 < s.size()) {
+                if (s[i] == '1' || (s[i] == '2' && s[i + 1] <= '6')) {
+                    dp[i] += dp[i + 2];
+                }
             }
         }
-    
-    return dp[i];
-}
-    int numDecodings(string s) {
-        int n=s.size();
-        vector<int> dp(n+1, -1);
-        return dekho(0,s, dp);
+
+        return dp[0];
     }
 };

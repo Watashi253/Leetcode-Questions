@@ -2,37 +2,32 @@ class Solution {
 public:
     int minOperations(vector<int>& nums) {
         int n = nums.size();
-        int idx = 0;
+        int idx = find(nums.begin(), nums.end(), 0) - nums.begin();
 
-        for (int i = 0; i < n; i++) {
-            if (nums[i] == 0) {
-                idx = i;
-                break;
+        bool asc = true;
+        bool desc = true;
+
+        for (int i = 1; i < n; i++) {
+            
+            int c=nums[(idx + i) % n];
+
+            if (c != i) {
+                asc = false;
+            }
+
+            if (c !=n-i) {
+                desc = false;
+            }
+
+            if (!asc && !desc) {
+                return -1;
             }
         }
 
-        bool is_forward = true;
-        bool is_reverse = true;
-
-        for (int i = 0; i < n; i++) {
-            if (nums[(idx + i) % n] != i) {
-                is_forward = false;
-            }
-
-            if (nums[(idx - i + n) % n] != i) {
-                is_reverse = false;
-            }
+        if (asc) {
+            return min(idx, n - idx + 2);
         }
 
-        int min_ops = 1e9;
-
-        if (is_forward) {
-            min_ops = min(min_ops, min(idx, n - idx + 2));
-        }
-        if (is_reverse) {
-            min_ops = min(min_ops, min(n - idx, idx + 2));
-        }
-
-        return min_ops == 1e9 ? -1 : min_ops;
+        return min(n - idx, idx + 2);
     }
 };

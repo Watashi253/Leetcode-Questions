@@ -4,7 +4,6 @@ const int md=1e9+7;
     int countHomogenous(string s) {
 
         int n = s.size();
-        vector<string> st;
         int c = 0, op = 0;
 
         for (int i = 0; i < n; i++) {

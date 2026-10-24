@@ -15,27 +15,15 @@ int month = stoi(date.substr(0, 2));
     return nthDay;
 }
     int countDaysTogether(string arriveAlice, string leaveAlice, string arriveBob, string leaveBob) {
-        
-         vector<int> days(366,0);
 
         int a1=convertToDay(arriveAlice);
         int a2=convertToDay(leaveAlice);
         int b1=convertToDay(arriveBob);
         int b2=convertToDay(leaveBob);
 
-        for(int i=a1; i<=a2; i++){
-            days[i]++;
-        }
+        int start=max(a1, b1);
+        int end = min(a2, b2);
 
-        for(int i=b1; i<=b2; i++){
-            days[i]++;
-        }
-
-        int c=0;
-        for(int i=1; i<366; i++){
-            if(days[i]==2)c++;
-        }
-
-        return c;      
+        return max(0, end-start+1);      
     }
 };
